@@ -1,0 +1,61 @@
+python manage.py createsuperuser
+
+
+
+
+admin
+admin@admin.com
+1234
+1234
+y
+
+
+
+python manage.py runserver
+
+
+
+
+
+python manage.py makemigrations
+python manage.py migrate
+python manage.py shell
+from Accounts.models import *
+
+a = Specs(name='Не указано')
+
+a.save()
+
+a = TypeProject(type = 'Индивидуальный')
+a.save()
+a = TypeProject(type = 'Командный')
+a.save()
+a = TypeProject(type = 'Рабочий')
+a.save()
+a = TypeProject(type = 'Конкурсный')
+a.save()
+a = SpecProject(name='Не указано')
+a.save()
+a = SpecProject(name='Разное')
+a.save()
+a = SpecProject(name='Дизайн')
+a.save()
+a = SpecProject(name='Программирование')
+a.save()
+a = SpecProject(name='Веб-разработка')
+a.save()
+a = SpecProject(name='Базы данных')
+a.save()
+a = SpecProject(name='Музыка')
+a.save()
+a = Specs(name='Дизайнер')
+a.save()
+a = Specs(name='Программист')
+a.save()
+a = Specs(name='Дизайнер')
+a.save()
+a = Specs(name='3D-моделлер')
+a.save()
+a = Specs(name='Музыкант')
+a.save()
+exit()

@@ -1,0 +1,90 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.25">
+    <title>{{title}}</title>
+    <!--<link rel="stylesheet" href="{% static 'css/normalize.css' %}">
+    <link rel="stylesheet" href="{% static 'css/general_styles.css' %}">
+    <link rel="stylesheet" href="{% static 'css/user-profile_styles.css' %}">
+    <link href = "{% static 'fonts/stylesheet.css' %}" rel = "stylesheet" type = "text/css" />-->
+    {% block css %}
+    {% endblock %}
+
+</head>
+<body>
+{% block mainmenu %}
+<header class="header">
+    <div class="container header-container">
+        <nav class="nav">
+            <ul class="nav-list">
+                <li class="nav-item"><a href="{% url 'home' %}" class="nav-link">Главная</a></li>
+                <li class="nav-item"><a href="{% url 'home' %}" class="nav-link">Востребованность</a></li>
+                <li class="nav-item"><a href="{% url 'home' %}" class="nav-link">География</a></li>
+                <li class="nav-item"><a href="{% url 'home' %}" class="nav-link">Навыки</a></li>
+                <li class="nav-item"><a href="{% url 'home' %}" class="nav-link">Последние вакансии</a></li>
+                {% if request.user.is_authenticated %}
+                <li class="nav-item"><a href="{% url 'subscriptions' %}" class="nav-link">Мои подписки</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+        <div class="user-container">
+            <img src="{% static 'images/user-icon.png' %}" alt="" class = "user-icon">
+            {% if request.user.is_authenticated %}
+                <a href="{% url 'profile' slug=request.user.slug %}" class ="profile-link">Мой профиль</a>
+            {% else %}
+                <a href="{% url 'welcome'%}" class ="profile-link">Войти | Зарегистрироваться</a>
+            {% endif %}
+            {% if request.user.is_authenticated %}
+            <a href="{% url 'logout' %}">
+                <img src="{% static 'images/exit.png' %}" class="exit-icon">
+            </a>
+            {% endif %}
+        </div>
+    </div>
+</header>
+{% endblock %}
+
+<main>
+{% block content %}
+{% endblock %}
+</main>
+
+
+<footer class="footer">
+        <div class="footer_logo">
+            <a href="{% url 'home' %}" class="footer_logo-img">
+                <img src="{% static 'images/Logo.png' %}" alt="" class="footer_logo-img">
+            </a>
+        </div>
+        <div class="footer_nav">
+            <a href="{% url 'home' %}" class="nav_link">Главная</a>
+            {% if request.user.is_authenticated %}
+            <a href="{% url 'subscriptions' %}" class="nav_link">Мои подписки</a>
+            {% endif %}
+            {% if user.is_authenticated %}
+                <a href="{% url 'profile' slug=user.slug %}" class ="nav_link">Личный кабинет</a>
+            {% else %}
+                <a href="{% url 'welcome'%}" class ="nav_link">Личный кабинет</a>
+            {% endif %}
+        </div>
+        <div class="about-us_container">
+            <div class="nav_link about-us_heading">О нас</div>
+            <div class="about-us_contacts">
+                <div class="about-us_contacts-left">
+                    <a class="about-us_contacts-text" href="/">Команда ОАО ”УЕЛКИ”</a>
+                    <a class="about-us_contacts-text" href="https://youtu.be/dQw4w9WgXcQ">Бекэнд-разработчик Катерина </a>
+                    <a class="about-us_contacts-text" href="/">Фронтенд-разработчик Тимофей </a>
+                </div>
+                <div class="about-us_contacts-right">
+                    <a class="about-us_contacts-text" href="/">Дизайнер Анастасия</a>
+                    <a class="about-us_contacts-text" href="/">Бекэнд-разработчик Михаил </a>
+                    <a class="about-us_contacts-text" href="/">Тимлид  Дмитрий</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

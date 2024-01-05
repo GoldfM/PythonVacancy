@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/normalize.css' %}">
+    <link rel="stylesheet" href="{% static 'css/general_styles.css' %}">
+    <link rel="stylesheet" href="{% static 'css/main_page.css' %}">
+    <link href = "{% static 'fonts/stylesheet.css' %}" rel = "stylesheet" type = "text/css" />
+{% endblock %}
+
+{% block content %}
+    <div class="search_container">
+            <div class="search_header">
+                Давайте вдохновимся
+            </div>
+            <div class="search_info">
+                <form method="GET" action="{% url 'home' %}">
+                    <div class="input-heading">Имя</div>
+                    <input type="text" name="first_name" id="first_name" value="{{ request.GET.first_name }}" placeholder="Иван" class="input search_input">
+                    <div class="input-heading">Фамилия</div>
+                    <input type="text" name="last_name" id="last_name" value="{{ request.GET.last_name }}" placeholder="Иванов" class="input search_input">
+                    <div class="input-heading">Специализация</div>
+                    <input type="text" name="specialization" id="specialization" value="{{ request.GET.specialization }}" placeholder="Указать род деятельности" class="input search_input">
+                    <div class="search_button-container">
+                        <button type="submit" class="usual-button search_button">Поиск</button>
+                    </div>
+                </form>
+                <div>
+                    <img class="search_img" src="{% static 'images/mainpage_img.png' %}">
+                </div>
+            </div>
+        </div>
+
+<div class="users">
+{% for u in users %}
+    <div class="user-card-container">
+            <div class="left-section card-container">
+                <div class="user-header">{{ u.get_short_name }}</div>
+                <p class="user-text">{{ u.descriptions }}</p>
+                <div class="user-statistic-header">Статистика</div>
+                <div class="statistic-container">
+                    <ul class="statistic-list">
+                        <li class="statistic-item">{{ u.count_projects }} проекта(ов)</li>
+                        <li class="statistic-item">{{ u.count_followers }} подписок</li>
+                        <li class="statistic-item">{{ u.count_followings }} подписчиков</li>
+                    </ul>
+                    <a href="{% url 'profile' slug=u.slug %}" class="project-link">
+                        <h5 class="abour-project">Подробнее</h5>
+                        <img class="abour-project-icon" src="{% static 'images/about-project-icon.svg' %}">
+                    </a>
+                {% if user.is_authenticated and not is_your_profile %}
+                    {% if request.user.id not in u.get_followings %}
+                        <form action="{% url 'subscribe' %}" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="user_id" value="{{ u.id }}">
+                        <input type="hidden" name="redirect_url" value="{{ request.get_full_path }}">
+                        <button class="usual-button submit-button subscribe" type="submit">Подписаться</button>
+                        </form>
+
+                    {% else %}
+                        <form action="{% url 'unsubscribe' %}" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="user_id" value="{{ u.id }}">
+                        <input type="hidden" name="redirect_url" value="{{ request.get_full_path }}">
+                        <button class="usual-button submit-button unsubscribe" type="submit">Отписаться</button>
+                        </form>
+                    {% endif %}
+                {% endif %}
+                    </div>
+                </div>
+                <div class="right-section card-container">
+                    {% if u.photo %}
+                        <img src="{{u.photo.url}}" alt="" class="avatar">
+                    {% else %}
+                        <img src="{% static '/images/default_photo.png' %}" alt="" class="avatar">
+
+                    {% endif %}
+                </div>
+            </div>
+
+        </div>
+{% endfor %}
+</div>
+
+<!--<script>
+    document.querySelector('.users').addEventListener('click', event => {
+    if (event.target.classList.contains('subscribe')){
+        event.target.innerHTML = "Отписаться";
+        event.target.classList.remove('subscribe');
+        event.target.classList.add('unsubscribe');
+        event.target.dataset.subscribe = 'yes';
+    }
+    else if(event.target.classList.contains('unsubscribe')){
+        event.target.innerHTML = "Подписаться";
+        event.target.classList.remove('unsubscribe');
+        event.target.classList.add('subscribe');
+        event.target.dataset.subscribe = 'no';
+    }
+});
+</script>-->
+<script src="{% static 'js/scroll.js' %}"></script>
+{% endblock %}

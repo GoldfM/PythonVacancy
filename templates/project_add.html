@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/normalize.css' %}">
+    <link rel="stylesheet" href="{% static 'css/general_styles.css' %}">
+    <link rel="stylesheet" href="{% static 'css/project_settings.css' %}">
+    <link href = "{% static 'fonts/stylesheet.css' %}" rel = "stylesheet" type = "text/css" />
+{% endblock %}
+
+{% block content %}
+        <form enctype="multipart/form-data" autocomplete method="POST" action="">
+            {% csrf_token %}
+        <div class="main-info_edit">
+            <h1 class="main-info_title">Редактировать данные <br> о проекте</h1>
+
+            <div class="main-info_edit_form">
+{#                <form action="" autocomplete method="POST" class="main-info_edit_form">#}
+                    <div class="main-info_edit_item">
+                        <div class="input-heading">Название проекта</div>
+                        {% render_field form.name class="input main_input" placeholder="Название проекта"%}
+                        <div class="input-heading">Срок разработки</div>
+                        {% render_field form.time_developing placeholder="Указать промежуток времени" class="input main_input" %}
+                        <div class="input-heading">Тип проекта</div>
+                        {% render_field form.type class="input special-input main_input"%}
+                        <div class="input-heading">Специализация</div>
+                        {% render_field form.spec_proj class="input special-input main_input"%}
+                    </div>
+                    <div class="main-info_edit_item">
+                        <div class="input-heading textarea-heading">Ключевые мысли</div>
+                        {% render_field form.key_words class="textarea"%}
+                        <div class="input-heading textarea-heading">Описание</div>
+                        {% render_field form.descriptions placeholder="Ну а теперь можно поподробнее с чувством, толком. с расстановкой" class="textarea"%}
+                    </div>
+{#                </form> #}
+            </div>
+            <div class="check_container">
+                <!--<img class="check_img" src="{% static '/images/check.png' %}">--!>
+                <input type="submit" value="Создать проект!" class="check usual-button">
+{#                <span class="check usual-button">Создать проект!</span>#}
+            </div>
+        </div>
+
+        <div class="center_container">
+            <div class="center_container_item">
+                <div class="people">
+                    <h2 class="settings_title">Участники</h2>
+                    <p class='people_text'>Здесь вы можете указать людей, которые вам помогали в разработке проекта, либо были как-либо затронуты
+                        (ссылкой на их профиль, либо просто ФИО)</p>
+                    {% if bad_teammate_url %}
+                        <label for="">Вставьте ссылку на акаунт Cyberfolio</label>
+                    {% endif %}
+                    {% render_field form.teammate2 type="text" style="display: none" placeholder="Ссылка на профиль" class="input main_input profile_input"%}
+                    {% render_field form.teammate3 type="text" style="display: none" placeholder="Ссылка на профиль" class="input main_input profile_input"%}
+                    {% render_field form.teammate4 type="text" style="display: none" placeholder="Ссылка на профиль" class="input main_input profile_input"%}
+                    {% render_field form.teammate5 type="text" style="display: none" placeholder="Ссылка на профиль" class="input main_input profile_input"%}
+                    <div class="people_add_button">
+                        <img class="user_img" src="{% static '/images/user.png' %}">
+                        <button type="button" class="people_add">+Добавить участника</button>
+                    </div>
+                <script>
+                    var form = document.querySelectorAll('.profile_input')
+                    var index = 0;
+                    var btn = document.querySelector('.people_add_button')
+                    btn.addEventListener("click", function (e) {
+                      index = index + 1;
+                      for (var i = 0; i < index; i++){
+                        form[i].style.display = ""
+                      }
+                    });
+                </script>
+                </div>
+                <div class="link">
+                    <h2 class="settings_title">Ссылка на проект</h2>
+                    {% render_field form.url placeholder="Ссылка на архив с проектом" class="input main_input"%}
+                </div>
+            </div>
+            
+            <div class="photos">
+                <h2 class="settings_title photos_title">Фотографии</h2>
+                <div class="photos_text">Чтобы другие пользователи могли лучше понять, как работает ваш проект, как он выглядит - рекомендуем добавить фотографии</div>
+                <div class="photos_text"><span class="photos_main-word">Аватарка проекта</span> - то, что пользователь увидит сначала, когда откроет проект. Это должно быть что-то заметное, цепляющее </div>
+{#                <div class="photos_text"><span class="photos_main-word">Основное фото</span> - будет использоваться как задний фон на аватарке и главное фото, в панеле отзывов. Поэтому оно должно быть информативным </div>#}
+                <div class="photos_img">
+                    <div>
+                        {% if project.avatar_image %}
+                        <img class="photos_img_item" src="{{ project.avatar_image.url }}">
+                        {% else %}
+                        <img class="photos_img_item" src="{% static '/images/default_avatar.png'%}">
+                        {% endif %}
+                    </div>
+{#                    <br>#}
+{#                    <div>#}
+{#                        <img class="photos_img_item" src="{% static '/images/project_settings_2.png'%}">#}
+{#                    </div>#}
+                    
+                </div>
+                <div class="addition">
+                    <div class="photos_add">
+                        <img class="photo_add_icon" src="{% static '/images/photo.png'%}">
+                        {% render_field form.avatar_image value="Добавить фото" accept="image/*,image/jpeg" id="input_avatar" class="input_file" %}
+                        <input type="file" name="user-photo" value="Добавить фото" multiple accept="image/*,image/jpeg,png" id="input_avatar" class="input_file" >
+                        <label for="input_avatar" class="photos_add-text underlined_link">Добавить аватар проекта</label>
+
+                    </div>
+{#                    <div class="photos_add">#}
+{#                        <img class="photo_add_icon" src="{% static '/images/photo.png'%}">#}
+{#                        {% render_field form.main_image value="Добавить фото" accept="image/*,image/jpeg" id="input_avatar" class="input_file" %}#}
+{#                        <input type="file" name="user-photo" value="Добавить фото" multiple accept="image/*,image/jpeg,png" id="input_avatar2" class="input_file" >#}
+{#                        <label for="input_avatar2" class="photos_add-text underlined_link">Добавить основное фото</label>#}
+{#                    </div>#}
+                </div>
+            </div>
+
+        </div>
+
+        </form>
+{% endblock %}
