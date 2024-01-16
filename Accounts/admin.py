@@ -43,4 +43,4 @@ class CustomUserAdmin(UserAdmin):
 admin.site.register(Image)
 admin.site.register(Specs)
 admin.site.register(Follow)
-admin.site.register(Project)
+admin.site.register(Vacancy)

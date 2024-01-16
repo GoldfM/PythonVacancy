@@ -39,7 +39,7 @@ class User(AbstractUser):
 
 
     def get_projects(self):
-        return Project.objects.all().filter(users=self)
+        return Vacancy.objects.all().filter(users=self)
 
     def count_projects(self):
         return self.get_projects().count()
@@ -70,12 +70,12 @@ class User(AbstractUser):
 def project_directory_path(instance, filename):
     return 'projects/{0}/{1}'.format( instance.name, filename)
 
-class Project(models.Model):
+class Vacancy(models.Model):
     slug = models.SlugField(verbose_name='Слаг', unique=False)
     name = models.CharField(max_length=50, db_index=True, verbose_name="Название")
     users = models.ManyToManyField(User)
-    type = models.ForeignKey('TypeProject', on_delete=models.PROTECT, verbose_name='Тип преокта', default=1)
-    spec_proj = models.ForeignKey('SpecProject', on_delete=models.PROTECT, verbose_name='Специализация', default=1)
+    type = models.ForeignKey('TypeVacancy', on_delete=models.PROTECT, verbose_name='Тип преокта', default=1)
+    spec_proj = models.ForeignKey('SpecVacancy', on_delete=models.PROTECT, verbose_name='Специализация', default=1)
     #sum_registred = models.IntegerField(default=0, verbose_name='Сумма оценок зареганных')
     #count_registred = models.IntegerField(default=0, verbose_name='Количество оценок зареганных')
     sum_unregistred = models.IntegerField(default=0, verbose_name='Сумма оценок незареганных')
@@ -104,14 +104,14 @@ class Project(models.Model):
                     'я': 'ya'}
         self.slug = slugify(''.join(alphabet.get(w, w) for w in self.name.lower()))
 
-        super(Project, self).save(*args, **kwargs)
+        super(Vacancy, self).save(*args, **kwargs)
         self.users.clear()
 
         for teammate in [self.teammate1,self.teammate2,self.teammate3,self.teammate4,self.teammate5]:
             if teammate:
                 self.users.add(User.objects.get(slug = teammate.split('/')[-1]) )
 
-        super(Project, self).save(*args, **kwargs)
+        super(Vacancy, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.name
@@ -120,7 +120,7 @@ class Project(models.Model):
         return reverse('project', kwargs={'post_slug': self.slug})
 
     def get_users(self):
-        return Project.objects.get(slug=self.slug).users.all()
+        return Vacancy.objects.get(slug=self.slug).users.all()
 
     def get_rate_registred(self):
         if Rate.objects.filter(project=self).count() > 0:
@@ -147,7 +147,7 @@ def image_directory_path(instance, filename):
     return 'accounts/projects/{0}/{1}'.format(instance.proj.user.slug, filename)
 
 class Image(models.Model):
-    proj = models.ForeignKey('Project', verbose_name='Фото проекта', on_delete=models.CASCADE)
+    proj = models.ForeignKey('Vacancy', verbose_name='Фото проекта', on_delete=models.CASCADE)
     photo = models.ImageField(upload_to=image_directory_path)
     class Meta:
         verbose_name = 'Изображение'
@@ -166,7 +166,7 @@ class Specs(models.Model):
         ordering = ['id']
 
 
-class SpecProject(models.Model):
+class SpecVacancy(models.Model):
     name = models.CharField(max_length=40, verbose_name="Специализация проекта")
     def __str__(self):
         return self.name
@@ -175,7 +175,7 @@ class SpecProject(models.Model):
         verbose_name_plural = 'Специализации проектов'
         ordering = ['id']
 
-class TypeProject(models.Model):
+class TypeVacancy(models.Model):
     type = models.CharField(max_length=40, verbose_name="Тип проекта")
     def __str__(self):
         return self.type
@@ -195,7 +195,7 @@ class Follow(models.Model):
 
 class Rate(models.Model):
     user = models.ForeignKey('User', related_name='user', on_delete=models.CASCADE, verbose_name='Кто оценил')
-    project = models.ForeignKey('Project', related_name='project',on_delete=models.CASCADE, verbose_name='Какой проект оценил')
+    project = models.ForeignKey('Vacancy', related_name='project',on_delete=models.CASCADE, verbose_name='Какой проект оценил')
     rate = models.IntegerField(default=0, verbose_name='оценка')
     class Meta:
         verbose_name = 'Оценка'

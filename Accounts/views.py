@@ -36,8 +36,8 @@ class MySubscribtions(ListView):
         return context
 
 
-class ProjectView(DetailView):
-    model = Project
+class VacancyView(DetailView):
+    model = Vacancy
     template_name = 'project_page.html'
     slug_url_kwarg = 'post_slug'
     context_object_name = 'proj'
@@ -73,8 +73,8 @@ def wtfForm(request):
     return render(request, 'registration.html', {'form': form })
 
 
-class addProject(CreateView):
-    model = Project
+class addVacancy(CreateView):
+    model = Vacancy
     enctype = "multipart/form-data"
     template_name = "project_add.html"
     #success_url = reverse_lazy('project')
@@ -94,9 +94,9 @@ class addProject(CreateView):
                 if str(teammate).startswith('http://127.0.0.1:8000/profile/'):
                     print(str(teammate))
                 else:
-                    return redirect('addProject')
+                    return redirect('addVacancy')
 
-        return super(addProject, self).form_valid(form)
+        return super(addVacancy, self).form_valid(form)
 
     def get_context_data(self, *, object_list = None, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -118,6 +118,7 @@ def wtfForm1(request, name,surname, sursurname):
         if form.is_valid():
             a = User(first_name=name,last_name=surname,sur_sur_name=sursurname,username=username)
             a.set_password(pass1)
+
             a.save()
             new_user = authenticate(username=username, password=pass1)
             login(request, new_user)
@@ -240,8 +241,8 @@ class Profile(DetailView):
         #context = super().get_context_data(**kwargs)
         #context['title'] = "Профиль"
         #return context
-class ProjectUpdateView(UpdateView):
-    model = Project
+class VacancyUpdateView(UpdateView):
+    model = Vacancy
     enctype = "multipart/form-data"
     fields = ['name', 'type', 'key_words' ,'spec_proj', 'descriptions', 'time_developing',
               'teammate2', 'teammate3', 'teammate4', 'teammate5', 'url', 'avatar_image', 'main_image']
@@ -257,7 +258,7 @@ class ProjectUpdateView(UpdateView):
         return context
     def post(self, request, *args, **kwargs):
         print(request.POST)
-        return super(ProjectUpdateView, self).post(request,*args, **kwargs)
+        return super(VacancyUpdateView, self).post(request,*args, **kwargs)
 class ProfileUpdateView(UpdateView):
     model = User
     enctype = "multipart/form-data"
@@ -301,25 +302,25 @@ def logout_view(request):
     logout(request)
     return redirect('home')
 
-class DeleteProject(View):
+class DeleteVacancy(View):
     def post(self, request):
         project_id = request.POST.get('project_id')
         user_id = request.POST.get('user_id')
         new_user = User.objects.get(id=user_id)
 
-        if Project.objects.filter(id=project_id).exists():
-            Project.objects.get(id=project_id).delete()
+        if Vacancy.objects.filter(id=project_id).exists():
+            Vacancy.objects.get(id=project_id).delete()
 
         return redirect(reverse_lazy('profile', kwargs={'slug': request.user.slug}))
 
 
-class RateProject(View):
+class RateVacancy(View):
     def post(self, request):
         project_id = request.POST.get('project_id')
         user_id = request.POST.get('user_id')
         redirect_url = request.POST.get('redirect_url')
         score = request.POST.get('score')
-        project = Project.objects.get(id=project_id)
+        project = Vacancy.objects.get(id=project_id)
 
         if request.user.is_authenticated:
             Rate.objects.create(user_id=user_id, project_id=project_id, rate=score)

@@ -16,14 +16,7 @@
             <div class="user-statistic-container">
                 
                 <div class="user-statistic">
-                    <div class="first-colum">
-                        <h3 class="user-statistic-header">Статистика</h3>
-                        <ul class="statistic-list">
-                            <li class="statistic-item">{{ user.count_projects }} проектов</li>
-                            <li class="statistic-item">{{ user.count_followers }} подписок</li>
-                            <li class="statistic-item">{{ user.count_followings }} подписчиков</li>
-                        </ul>
-                    </div>
+
 
                     {% if request.user.is_authenticated and not is_your_profile %}
                     <div class="second-colum">
@@ -99,38 +92,7 @@
             </div>
         </div>
     </div>
-    <div class="container second-container">
-        <h1 class="projects-header">Проекты</h1>
-        {% if is_your_profile %}
-        <div class="add-project-aria">
-            <img class="add-project-icon" src="{% static 'images/add-project-icon.png' %}">
-            <a href="{% url 'addProject' %}" class="add-project-link"><div class="add-project">+Добавить новый проект</div></a>
-        </div>
-        {% endif %}
-    </div>
-    {% for project in projects %}
-        <div class="container third-container">
-            <div class="project-avatar-aria">
-                {% if project.avatar_image %}
-                    <img src="{{ project.avatar_image.url }}" alt="" class="avatar">
-                {% else %}
-                    <img src="{% static '/images/default_photo.png' %}" alt="" class="avatar">
-                {% endif %}
-            </div>
-            <div class="project-info-aria">
-                <div>
-                    <h3 class="project-name">{{ project.name }}</h3>
-                    <p class="project-info user-text">{{ project.key_words }}</p>
-                </div>
-                <div class="about-project-section">
-                    <a href="{% url 'project' profile_slug=user.slug post_slug=project.slug %}" class="project-link">
-                        <h5 class="abour-project">Подробнее</h5>
-                        <img class="abour-project-icon" src="{% static 'images/about-project-icon.svg' %}">
-                    </a>
-                </div>
-            </div>
-        </div>
-    {% endfor %}
+
 {% endblock %}
 
 </body>

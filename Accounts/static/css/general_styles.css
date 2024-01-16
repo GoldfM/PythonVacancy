@@ -285,9 +285,18 @@ h2 {
     border-bottom: 0.3vw solid #FF9000 !important;
     border-color: #FF9000 !important;
 }
-
+.nav-link{
+   font-size:25px;
+}
 .nav-item:not(:last-child) {
-  margin-right: 6.4vw;
+  margin-right: 2.3vw;
+}
+.nav-item:first-child {
+    margin-left: 3.5vw;
+}
+}
+.nav-item:not(:last-child) {
+  margin-right: 2.3vw;
 }
 
 .user-container {
@@ -295,7 +304,8 @@ h2 {
   display: flex;
   align-items: center;
   margin-left: auto;
-  margin-right: 7.23vw;
+  margin-right: 2.23vw;
+  font-size:25px;
 }
 
 .user-icon {
