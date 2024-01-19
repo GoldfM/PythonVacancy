@@ -289,14 +289,14 @@ h2 {
    font-size:25px;
 }
 .nav-item:not(:last-child) {
-  margin-right: 2.3vw;
+  margin-right: 4.3vw;
 }
 .nav-item:first-child {
-    margin-left: 3.5vw;
+    margin-left: 17.5vw;
 }
 }
 .nav-item:not(:last-child) {
-  margin-right: 2.3vw;
+  margin-right: 38.3vw;
 }
 
 .user-container {

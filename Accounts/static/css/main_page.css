@@ -35,11 +35,19 @@
     flex-direction: column;
     margin-right: 10.5vw;
 }
-
-.search_info{
-    display: flex;
+.search_info img{
+    border: 4px dotted #FFC41E;
+border-radius: 10px 10px 10px 10px;
+margin:30px 180px;;
 }
+.search_info{
 
+}
+.search_info p{
+    line-height: 35px;
+    font-size: 20px;
+    margin-bottom:20px;
+}
 .search_img{
     width: 45.4vw;
 }

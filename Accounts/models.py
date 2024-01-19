@@ -11,7 +11,7 @@ class Vacancy(models.Model):
     name = models.CharField(max_length=50, db_index=True, verbose_name="Название")
     salary_from = models.FloatField()
     salary_to = models.FloatField()
-    salary_currency = models.ForeignKey('Currency')
+    salary_currency = models.ForeignKey('Currency', on_delete = models.PROTECT)
     class Meta:
         verbose_name = 'Проект'
         verbose_name_plural = 'Проекты'
