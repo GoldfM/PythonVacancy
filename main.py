@@ -25,7 +25,7 @@ def calculate_avg_salary(row, conversion_rates):
 
 # Применение функции к каждой строке датафрейма
 df['average_salary'] = df.apply(lambda row: calculate_avg_salary(row, currency_to_rub), axis=1)
-
+df = df.query('average_salary <= 1000000')
 # Создание отдельного столбца для года публикации
 df['year_published'] = df['published_at'].dt.year
 
@@ -81,8 +81,10 @@ plt.savefig('count_year_vac.png')
 #========================================ГЕОГРАФИЯ===================================
 
 average_salary_by_year = df.groupby('area_name')['average_salary'].mean()
-vacancy_count_by_year = df.groupby('area_name').size()
-
+vacancy_count_by_year = df.groupby('area_name').size().sort_values(ascending=False).head(10)
+print(vacancy_count_by_year)
+average_salary_by_year = average_salary_by_year.sort_values(ascending=False).head(10)
+print(average_salary_by_year)
 # Визуализация данных
 import matplotlib.pyplot as plt
 
@@ -93,7 +95,7 @@ plt.title('Динамика уровня зарплат по годам')
 plt.xlabel('Год')
 plt.ylabel('Средняя зарплата')
 
-plt.savefig('salary_city.png')
+plt.savefig('Accounts/static/images2/salary_city.png')
 
 # График динамики количества вакансий по годам
 plt.figure(figsize=(10, 6))
@@ -101,23 +103,23 @@ plt.plot(vacancy_count_by_year.index, vacancy_count_by_year.values, marker='o', 
 plt.title('Динамика количества вакансий по годам')
 plt.xlabel('Год')
 plt.ylabel('Количество вакансий')
-plt.savefig('count_city.png')
+plt.savefig('Accounts/static/images2/count_city.png')
 
 
 
 selected_df = df[df['name'].str.contains("Python") | df['name'].str.contains("python") | df['name'].str.contains("пайтон")]
 
 # Группировка данных по годам и рассчет средней зарплаты и количества вакансий для выбранной профессии
-average_salary_by_year_selected = selected_df.groupby('year_published')['average_salary'].mean()
-vacancy_count_by_year_selected = selected_df.groupby('year_published').size()
-
+average_salary_by_year_selected = selected_df.groupby('area_name')['average_salary'].mean()
+vacancy_count_by_year_selected = selected_df.groupby('area_name').size().sort_values(ascending=False).head(10)
+average_salary_by_year_selected = average_salary_by_year_selected.sort_values(ascending=False).head(10)
 # Визуализация динамики уровня зарплат для выбранной профессии по годам
 plt.figure(figsize=(10, 6))
 plt.plot(average_salary_by_year_selected.index, average_salary_by_year_selected.values, marker='o', color='g')
 plt.title('Динамика уровня зарплат для выбранной профессии по годам')
 plt.xlabel('Год')
 plt.ylabel('Средняя зарплата')
-plt.savefig('salary_city_vac.png')
+plt.savefig('Accounts/static/images2/salary_city_vac.png')
 
 
 # Визуализация динамики количества вакансий для выбранной профессии по годам
@@ -126,6 +128,6 @@ plt.plot(vacancy_count_by_year_selected.index, vacancy_count_by_year_selected.va
 plt.title('Динамика количества вакансий для выбранной профессии по годам')
 plt.xlabel('Год')
 plt.ylabel('Количество вакансий')
-plt.savefig('count_city_vac.png')
+plt.savefig('Accounts/static/images2/count_city_vac.png')
 
 

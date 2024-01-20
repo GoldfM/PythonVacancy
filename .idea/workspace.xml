@@ -1,20 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="32b85768-fff0-4d31-a18e-d512974e2d00" name="Changes" comment="Добавил графики">
-      <change afterPath="$PROJECT_DIR$/templates/actual.html" afterDir="false" />
+    <list default="true" id="32b85768-fff0-4d31-a18e-d512974e2d00" name="Changes" comment="Добавил страницу &quot;востребованность&quot;">
+      <change afterPath="$PROJECT_DIR$/templates/geopos.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Accounts/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/Accounts/admin.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Accounts/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/Accounts/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Accounts/static/css/general_styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/Accounts/static/css/general_styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Accounts/static/css/main_page.css" beforeDir="false" afterPath="$PROJECT_DIR$/Accounts/static/css/main_page.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Accounts/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/Accounts/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cyberfolio/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/Cyberfolio/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cyberfolio/text.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Cyberfolio/text.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Cyberfolio/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/Cyberfolio/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/actual.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/actual.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/main_page.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/main_page.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,23 +29,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "C:/Users/admin/PycharmProjects/CyberFol/templates"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/admin/PycharmProjects/CyberFol/templates&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\admin\PycharmProjects\CyberFol\templates" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\admin\PycharmProjects\CyberFol\Accounts\static\images2" />
       <recent name="C:\Users\admin\PycharmProjects\CyberFol\Accounts\static\images" />
       <recent name="C:\Users\admin\PycharmProjects\CyberFol\templates" />
       <recent name="C:\Users\admin\PycharmProjects\CyberFol\Accounts" />
       <recent name="C:\Users\admin\PycharmProjects\CyberFol\Accounts\static\css" />
-      <recent name="C:\Users\admin\PycharmProjects\CyberFol\Accounts\static" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -76,7 +71,14 @@
       <option name="project" value="LOCAL" />
       <updated>1705682258008</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Добавил страницу &quot;востребованность&quot;">
+      <created>1705691874191</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1705691874191</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -105,6 +107,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Init" />
     <MESSAGE value="Добавил графики" />
-    <option name="LAST_COMMIT_MESSAGE" value="Добавил графики" />
+    <MESSAGE value="Добавил страницу &quot;востребованность&quot;" />
+    <option name="LAST_COMMIT_MESSAGE" value="Добавил страницу &quot;востребованность&quot;" />
   </component>
 </project>

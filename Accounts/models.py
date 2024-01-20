@@ -11,7 +11,6 @@ class Vacancy(models.Model):
     name = models.CharField(max_length=50, db_index=True, verbose_name="Название")
     salary_from = models.FloatField()
     salary_to = models.FloatField()
-    salary_currency = models.ForeignKey('Currency', on_delete = models.PROTECT)
     class Meta:
         verbose_name = 'Проект'
         verbose_name_plural = 'Проекты'
@@ -27,11 +26,6 @@ class SkillVacancy(models.Model):
         verbose_name_plural = 'Изображения'
         ordering = ['id']
 
-class Currency(models.Model):
-    name = models.CharField(max_length=40)
-    value = models.FloatField()
-    def __str__(self):
-        return self.name
 class Skill(models.Model):
     name = models.CharField(max_length=40, verbose_name="Навык")
     def __str__(self):

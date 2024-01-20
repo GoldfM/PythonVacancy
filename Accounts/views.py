@@ -28,7 +28,10 @@ class Actual(View):
     def get(self, request, *args, **kwargs):
         return render(request, 'actual.html')
 
-
+class Geopos(View):
+    #paginate_by = 6
+    def get(self, request, *args, **kwargs):
+        return render(request, 'geopos.html')
 class LastVacancies(ListView):
     #paginate_by = 6
     model = Vacancy
