@@ -24,7 +24,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', Home.as_view(), name='home'),
     path('actual/', Actual.as_view(), name='actual'),
-    path('geopos/', Geopos.as_view(), name='geopos')
+    path('geopos/', Geopos.as_view(), name='geopos'),
+    path('skills/', Skills.as_view(), name='skills')
 ]
 urlpatterns += static(settings.MEDIA_URL,
                               document_root=settings.MEDIA_ROOT)
