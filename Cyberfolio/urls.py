@@ -25,7 +25,8 @@ urlpatterns = [
     path('', Home.as_view(), name='home'),
     path('actual/', Actual.as_view(), name='actual'),
     path('geopos/', Geopos.as_view(), name='geopos'),
-    path('skills/', Skills.as_view(), name='skills')
+    path('skills/', Skills.as_view(), name='skills'),
+    path('last-vacancies/', LastVacancies.as_view(), name='last_vacs'),
 ]
 urlpatterns += static(settings.MEDIA_URL,
                               document_root=settings.MEDIA_ROOT)

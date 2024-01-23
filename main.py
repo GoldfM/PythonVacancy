@@ -3,7 +3,7 @@ import numpy as np
 import datetime
 
 def render_mpl_table(data, col_width=3.0, row_height=0.625, font_size=14,
-                     header_color='#40466e', row_colors=['#f1f1f2', 'w'], edge_color='w',
+                     header_color='#f5b201', row_colors=['#f1f1f2', 'w'], edge_color='w',
                      bbox=[0, 0, 1, 1], header_columns=0,
                      ax=None, **kwargs):
     if ax is None:
@@ -152,7 +152,7 @@ average_salary_by_year = average_salary_by_year.sort_values(ascending=False).hea
 import matplotlib.pyplot as plt
 
 # График динамики уровня зарплат по годам
-plt.figure(figsize=(10, 6))
+plt.figure(figsize=(20, 6))
 plt.plot(average_salary_by_year.index, average_salary_by_year.values, marker='o')
 plt.title('Динамика уровня зарплат по городам')
 plt.xlabel('Город')
@@ -162,11 +162,11 @@ plt.savefig('Accounts/static/images2/salary_city.png')
 
 sf = pd.DataFrame({'Город':average_salary_by_year.index, 'Зарплата':np.round(average_salary_by_year.values,
                        decimals = 2)})
-fig,ax = render_mpl_table(sf, header_columns=0, col_width=2.0)
+fig,ax = render_mpl_table(sf, header_columns=0, col_width=5.0)
 fig.savefig("Accounts/static/images2/table_salary_city.png")
 
 # График динамики количества вакансий по годам
-plt.figure(figsize=(10, 6))
+plt.figure(figsize=(20, 6))
 plt.plot(vacancy_count_by_year.index, vacancy_count_by_year.values, marker='o', color='r')
 plt.title('Динамика количества вакансий по городам')
 plt.xlabel('Город')
@@ -175,7 +175,7 @@ plt.savefig('Accounts/static/images2/count_city.png')
 
 sf = pd.DataFrame({'Город':vacancy_count_by_year.index, 'Количество':np.round(vacancy_count_by_year.values,
                        decimals = 2)})
-fig,ax = render_mpl_table(sf, header_columns=0, col_width=2.0)
+fig,ax = render_mpl_table(sf, header_columns=0, col_width=3.0)
 fig.savefig("Accounts/static/images2/table_count_city.png")
 
 
@@ -186,7 +186,7 @@ average_salary_by_year_selected = selected_df.groupby('area_name')['average_sala
 vacancy_count_by_year_selected = selected_df.groupby('area_name').size().sort_values(ascending=False).head(10)
 average_salary_by_year_selected = average_salary_by_year_selected.sort_values(ascending=False).head(10)
 # Визуализация динамики уровня зарплат для выбранной профессии по годам
-plt.figure(figsize=(10, 6))
+plt.figure(figsize=(20, 6))
 plt.plot(average_salary_by_year_selected.index, average_salary_by_year_selected.values, marker='o', color='g')
 plt.title('Динамика уровня зарплат для выбранной профессии по городам')
 plt.xlabel('Год')
@@ -195,11 +195,11 @@ plt.savefig('Accounts/static/images2/salary_city_vac.png')
 
 sf = pd.DataFrame({'Город':average_salary_by_year_selected.index, 'Зарплата':np.round(average_salary_by_year_selected.values,
                        decimals = 2)})
-fig,ax = render_mpl_table(sf, header_columns=0, col_width=2.0)
+fig,ax = render_mpl_table(sf, header_columns=0, col_width=5.0)
 fig.savefig("Accounts/static/images2/table_salary_city_vac.png")
 
 # Визуализация динамики количества вакансий для выбранной профессии по годам
-plt.figure(figsize=(10, 6))
+plt.figure(figsize=(20, 6))
 plt.plot(vacancy_count_by_year_selected.index, vacancy_count_by_year_selected.values, marker='o', color='b')
 plt.title('Динамика количества вакансий для выбранной профессии по городам')
 plt.xlabel('Год')
@@ -208,7 +208,7 @@ plt.savefig('Accounts/static/images2/count_city_vac.png')
 
 sf = pd.DataFrame({'Город':vacancy_count_by_year_selected.index, 'Количество':np.round(vacancy_count_by_year_selected.values,
                        decimals = 2)})
-fig,ax = render_mpl_table(sf, header_columns=0, col_width=2.0)
+fig,ax = render_mpl_table(sf, header_columns=0, col_width=3.0)
 fig.savefig("Accounts/static/images2/table_count_city_vac.png")
 
 
@@ -232,7 +232,7 @@ plt.ylabel('Skill')
 
 # Добавление легенды в обратном порядке
 handles = [plt.Rectangle((0,0),1,1, color=color) for color in colors]
-plt.legend(handles[::], top_skills.index[::], loc='lower right')  # Измененный порядок значений в легенде
+plt.legend(handles[::], top_skills.index[::], loc='lower right', fontsize=8)  # Измененный порядок значений в легенде
 
 plt.gca().axes.get_xaxis().set_visible(False)  # Скрытие подписей оси x
 plt.gca().axes.get_yaxis().set_visible(False)  # Скрытие подписей оси y
@@ -261,7 +261,7 @@ plt.ylabel('Навык')
 
 # Добавление легенды в обратном порядке
 handles = [plt.Rectangle((0,0),1,1, color=color) for color in colors]
-plt.legend(handles[::], top_skills.index[::], loc='lower right')  # Измененный порядок значений в легенде
+plt.legend(handles[::], top_skills.index[::], loc='lower right', fontsize=8)  # Измененный порядок значений в легенде
 
 plt.gca().axes.get_xaxis().set_visible(False)  # Скрытие подписей оси x
 plt.gca().axes.get_yaxis().set_visible(False)  # Скрытие подписей оси y

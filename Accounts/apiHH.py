@@ -1,5 +1,6 @@
 import re
 import requests
+from datetime import datetime
 
 
 
@@ -20,17 +21,14 @@ def get_data_vacancies(date: str, count_vac: int):
             description = ' '.join(re.sub(re.compile('<.*?>'), '', resp['description'])
                                    .strip()
                                    .split())
-            description = description[:100] + '...' if len(description) >= 100 else description
+            description = description[:250] + '...' if len(description) >= 250 else description
             result_list.append({'name': resp['name'],
                                 'description': description,
                                 'key_skills': ', '.join(map(lambda x: x['name'], resp['key_skills'])),
-                                'employer': resp['employer']['name'],
-                                'salary': f"{resp['salary']['from'] or ''} - {resp['salary']['to'] or ''} {resp['salary']['currency']}",
+                                'company': resp['employer']['name'],
+                                'salary': f"{resp['salary']['from'] or ''}{' - ' if resp['salary']['from'] and resp['salary']['to'] else ''} {resp['salary']['to'] or ''} {resp['salary']['currency']}",
                                 'area': resp['area']['name'],
                                 'published_at': resp['published_at'][:10],
                                 'alternate_url': resp['alternate_url']})
 
     return result_list
-
-
-print(get_data_vacancies('2024-01-21', 20))

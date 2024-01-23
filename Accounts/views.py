@@ -17,7 +17,7 @@ from Accounts.forms import *
 from Accounts.models import *
 from Accounts.apiHH import *
 
-
+from datetime import datetime
 class Home(View):
     #paginate_by = 6
     def get(self, request, *args, **kwargs):
@@ -57,3 +57,7 @@ class LastVacancies(ListView):
 
         return vacancies
 
+class LastVacancies(View):
+    def get(self, request, *args, **kwargs):
+        last_vacs = get_data_vacancies(str(datetime.now())[:10], 15)
+        return render(request, 'last_vac.html', context={'vacancies': last_vacs})
