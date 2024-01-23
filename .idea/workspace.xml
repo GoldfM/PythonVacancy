@@ -1,19 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="32b85768-fff0-4d31-a18e-d512974e2d00" name="Changes" comment="Добавлена страница рейтинга навыков. Почищен мусор из проекта">
-      <change afterPath="$PROJECT_DIR$/templates/last_vac.html" afterDir="false" />
+    <list default="true" id="32b85768-fff0-4d31-a18e-d512974e2d00" name="Changes" comment="Добавлена страница последних вакансий. Доработан визуал">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Accounts/apiHH.py" beforeDir="false" afterPath="$PROJECT_DIR$/Accounts/apiHH.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Accounts/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/Accounts/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Accounts/static/css/general_styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/Accounts/static/css/general_styles.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Accounts/static/css/main_page.css" beforeDir="false" afterPath="$PROJECT_DIR$/Accounts/static/css/main_page.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Accounts/static/images2/count_city.png" beforeDir="false" afterPath="$PROJECT_DIR$/Accounts/static/images2/count_city.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Accounts/static/images2/count_city_vac.png" beforeDir="false" afterPath="$PROJECT_DIR$/Accounts/static/images2/count_city_vac.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Accounts/static/images2/salary_city.png" beforeDir="false" afterPath="$PROJECT_DIR$/Accounts/static/images2/salary_city.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Accounts/static/images2/salary_city_vac.png" beforeDir="false" afterPath="$PROJECT_DIR$/Accounts/static/images2/salary_city_vac.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Accounts/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/Accounts/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cyberfolio/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/Cyberfolio/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/actual.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/actual.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/geopos.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/geopos.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -121,7 +118,14 @@
       <option name="project" value="LOCAL" />
       <updated>1705891362982</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Добавлена страница последних вакансий. Доработан визуал">
+      <created>1706025800973</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1706025800973</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -154,6 +158,7 @@
     <MESSAGE value="Добавил страницу &quot;география&quot;" />
     <MESSAGE value="Добавил картинки (создаются в файле main.py)" />
     <MESSAGE value="Добавлена страница рейтинга навыков. Почищен мусор из проекта" />
-    <option name="LAST_COMMIT_MESSAGE" value="Добавлена страница рейтинга навыков. Почищен мусор из проекта" />
+    <MESSAGE value="Добавлена страница последних вакансий. Доработан визуал" />
+    <option name="LAST_COMMIT_MESSAGE" value="Добавлена страница последних вакансий. Доработан визуал" />
   </component>
 </project>

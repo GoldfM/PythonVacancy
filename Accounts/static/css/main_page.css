@@ -6,7 +6,15 @@
 .aue228 {
     font-weight: 900;
 }
+.title-section {
+    color: #FF9000;
+    font-weight: 900;
+    font-size: 50px !important;
+    text-align: center;
+    margin-top: 80px;
 
+
+}
 .search_container{
     display: flex;
     background: #F8F6F8;
