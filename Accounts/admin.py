@@ -6,4 +6,4 @@ from Accounts.models import *
 
 
 
-admin.site.register(Vacancy)
+admin.site.register(ImagesPages)

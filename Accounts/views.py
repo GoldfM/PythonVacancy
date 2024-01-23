@@ -1,17 +1,6 @@
-import random
-
-from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth.views import LoginView
-from django.core.exceptions import PermissionDenied
-from django.db.models import Count, Q
-from django.http import HttpResponseRedirect, QueryDict, HttpResponse, Http404
-from django.shortcuts import render, redirect, get_object_or_404
-from django.urls import reverse, reverse_lazy
-from django.utils.decorators import method_decorator
+from django.shortcuts import render
 from django.views import View
-from django.views.generic import ListView, DetailView, UpdateView, CreateView
-from scipy.constants import slug
+from django.views.generic import ListView
 
 from Accounts.forms import *
 from Accounts.models import *
@@ -21,22 +10,26 @@ from datetime import datetime
 class Home(View):
     #paginate_by = 6
     def get(self, request, *args, **kwargs):
-        return render(request, 'main_page.html')
+        page_info = ImagesPages.objects.all().get(name_page='Главная')
+        return render(request, 'main_page.html', {'images': page_info})
 
 class Actual(View):
     #paginate_by = 6
     def get(self, request, *args, **kwargs):
-        return render(request, 'actual.html')
+        page_info = ImagesPages.objects.all().get(name_page='Восстребованность')
+        return render(request, 'actual.html', {'images': page_info})
 
 class Geopos(View):
     #paginate_by = 6
     def get(self, request, *args, **kwargs):
-        return render(request, 'geopos.html')
+        page_info = ImagesPages.objects.all().get(name_page='География')
+        return render(request, 'geopos.html', {'images': page_info})
 
 class Skills(View):
     #paginate_by = 6
     def get(self, request, *args, **kwargs):
-        return render(request, 'skills.html')
+        page_info = ImagesPages.objects.all().get(name_page='Навыки')
+        return render(request, 'skills.html', {'images': page_info})
 class LastVacancies(ListView):
     #paginate_by = 6
     model = Vacancy
